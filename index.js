@@ -1,10 +1,13 @@
 const express = require('express');
+const app = express();
 const  Home = require('./Rutas.json');
 const { MasNoticias } = require('./Script/news/MasNoticias.js');
 const { Recientes } = require('./Script/news/Recientes.js');
 const { Populares } = require('./Script/news/Populares.js');
+const { Reviews } = require('./Script/news/Reviews.js');
 
-const app = express();
+
+
 
 
 
@@ -31,11 +34,12 @@ app.get('/api/news/:categoria', (req, res) => {
             Recientes().then(noticias => {
             res.json(noticias);
            });
-        
             break;
         
-        case reviews:
-
+        case 'reviews':
+             Reviews().then(noticias => {
+               res.json(noticias);
+              });
             break;
         default:
              res.send('No se encontro la categoria');
