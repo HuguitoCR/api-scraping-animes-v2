@@ -1,0 +1,22 @@
+{
+  "name": "api-scraping-animes-v2",
+  "version": "1.0.0",
+  "description": "Api de animes echa por Kevin y Hugo ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kevin y Hugo",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.3",
+    "ioredis": "^4.28.5"
+  }
+}
