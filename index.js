@@ -2,8 +2,7 @@ const express = require('express');
 const app = express();
 const Home = require('./Rutas.json');
 
-/*/ Noticias */
-const { Reviews, Populares, MasNoticias, Recientes } = require('./Script/News')
+const newsRouter = require('./controllers/news');
 
 
 /*/  Animes  */
@@ -16,40 +15,7 @@ app.get('/', (req, res) => {
     res.json(Home);
 })
 
-app.get('/api/news/:categoria', (req, res) => {
-    switch (req.params.categoria) {
-       
-        case 'masNoticias':
-           MasNoticias().then(noticias => {
-            res.json(noticias);
-           });
-            break;
-
-        case 'populares':
-            Populares().then(noticias => {
-                res.json(noticias);
-            });
-            break;  
-
-        case 'recientes':
-            Recientes().then(noticias => {
-            res.json(noticias);
-           });
-            break;
-        
-        case 'reviews':
-             Reviews().then(noticias => {
-               res.json(noticias);
-              });
-            break;
-
-        default:
-             res.send('No se encontro la categoria').end();
-         break;
-         
-    }
-})
-
+app.use('/api/news', newsRouter);
 
 app.get('/api/anime/:opcion/:id', (req, res) => {
       switch (req.params.opcion) {
