@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
 const  Home = require('./Rutas.json');
-const { MasNoticias } = require('./Script/news/MasNoticias.js');
-const { Recientes } = require('./Script/news/Recientes.js');
-const { Populares } = require('./Script/news/Populares.js');
-const { Reviews } = require('./Script/news/Reviews.js');
 
+/*/ Noticias */
+const { MasNoticias } = require('./Script/News/MasNoticias.js');
+const { Recientes } = require('./Script/News/Recientes.js');
+const { Populares } = require('./Script/News/Populares.js');
+const { Reviews } = require('./Script/News/Reviews.js');
 
-
+/*/  Animes  */
+const { LastEpisodes } = require('./Script/Animes/lastEpisodes.js');
 
 
 
@@ -16,20 +18,21 @@ app.get('/', (req, res) => {
     res.json(Home);
 })
 
-
-
 app.get('/api/news/:categoria', (req, res) => {
     switch (req.params.categoria) {
+       
         case 'masNoticias':
            MasNoticias().then(noticias => {
             res.json(noticias);
            });
             break;
+
         case 'populares':
             Populares().then(noticias => {
                 res.json(noticias);
             });
             break;  
+
         case 'recientes':
             Recientes().then(noticias => {
             res.json(noticias);
@@ -41,15 +44,41 @@ app.get('/api/news/:categoria', (req, res) => {
                res.json(noticias);
               });
             break;
+
         default:
-             res.send('No se encontro la categoria');
+             res.send('No se encontro la categoria').end();
          break;
          
     }
 })
 
 
+app.get('/api/anime/:opcion', (req, res) => {
+      switch (req.params.opcion) {
+        case 'lastEpisodes':
+            LastEpisodes().then(animes => {
+                res.json(animes);
+            });
+            break;
+            
 
+
+        default:
+            res.send('No se encontro la opcion').end();
+            break;
+             
+      }
+      
+
+
+
+
+
+
+
+
+
+})
 
 
 
