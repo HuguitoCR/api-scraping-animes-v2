@@ -7,30 +7,28 @@ const Populares = async() => {
 	const reply = await client.get('populares');
 
 	if (reply) {
-	    client.quit();
+	  client.quit();
 		return JSON.parse(reply);
 	}
 	else {
-		 const url = 'https://somoskudasai.com/';
-		 const result = await axios.get(url);	
-		 const $ = cheerio.load(result.data);
-		 const noticias = [];
+		const url = 'https://somoskudasai.com/';
+		const result = await axios.get(url);	
+		const $ = cheerio.load(result.data);
+		const noticias = [];
 
-            $('.ar-featured .swiper-slide').each((i, elem) => {
-			 const noticia = {
-				 titulo: $(elem).find('a').attr('aria-label'),
-				 url: $(elem).find('a').attr('href'),
-				 img: $(elem).find('img').attr('src'),
-			 };
-			 
-			 noticias.push(noticia);
-			});
+    $('.ar-featured .swiper-slide').each((i, elem) => {
+			const noticia = {
+				titulo: $(elem).find('a').attr('aria-label'),
+				url: $(elem).find('a').attr('href'),
+				img: $(elem).find('img').attr('src'),
+			};
+		noticias.push(noticia);
+		});
 
-	         await client.set('populares', JSON.stringify(noticias), 'EX', 5400);			
-			 client.quit();
-			 return noticias;
+	  await client.set('populares', JSON.stringify(noticias), 'EX', 5400);			
+		client.quit();
+		return noticias;
 	}
-
 }
 
-exports.Populares = Populares;
+module.exports = Populares;
