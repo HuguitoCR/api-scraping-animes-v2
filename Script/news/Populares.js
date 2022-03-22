@@ -1,5 +1,4 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
+const { getHtml } = require('../../helpers');
 const Redis = require('ioredis');
 
 const Populares = async() => {
@@ -11,8 +10,7 @@ const Populares = async() => {
 		return JSON.parse(reply);
 	}
 	else {
-		const html = await axios('https://somoskudasai.com/');
-		const $ = cheerio.load(html.data);
+		const $ = await getHtml('https://somoskudasai.com/');
 		const noticias = [];
 
 		$('.ar-featured .swiper-slide').each(function() {

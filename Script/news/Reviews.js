@@ -1,9 +1,7 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
+const { getHtml } = require('../../helpers');
 
 const Reviews = async() => {
-	const html = await axios('https://somoskudasai.com/');
-	const $ = cheerio.load(html.data);
+	const $ = await getHtml('https://somoskudasai.com/');
 	const noticias = [];
 	
 	$('.ar-reviews .swiper-slide').each(function() {
