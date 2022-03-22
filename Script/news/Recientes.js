@@ -11,25 +11,24 @@ const Recientes = async() => {
 		return JSON.parse(reply);
 	}
 	else {
-		const url = 'https://somoskudasai.com/';
-		const result = await axios.get(url);	
-		const $ = cheerio.load(result.data);
+		const html = await axios('https://somoskudasai.com/');
+		const $ = cheerio.load(html.data);
 		const noticias = [];
 
-		$('.news-list .ar.por').each((i, elem) => {
+		$('.news-list .ar.por').each(function() {
 			const noticia = {
-				titulo: $(elem).find('a').attr('aria-label'),
-				url: $(elem).find('a').attr('href'),
-				img: $(elem).find('img').attr('src'),
-				fecha: $(elem).find('span.db').text().trim()
+				titulo: $(this).find('a').attr('aria-label'),
+				url: $(this).find('a').attr('href'),
+				img: $(this).find('img').attr('src'),
+				fecha: $(this).find('span.db').text().trim()
 			};
 			noticias.push(noticia);
 		});
-		
-	  await client.set('recientes', JSON.stringify(noticias), 'EX', 5400);			
+
+		await client.set('recientes', JSON.stringify(noticias), 'EX', 5400);	
 		client.quit();
-		return noticias;	 
+		return noticias;
 	}
-}
+};
 
 module.exports = Recientes;

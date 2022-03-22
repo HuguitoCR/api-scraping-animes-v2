@@ -7,28 +7,27 @@ const Populares = async() => {
 	const reply = await client.get('populares');
 
 	if (reply) {
-	  client.quit();
+		client.quit();
 		return JSON.parse(reply);
 	}
 	else {
-		const url = 'https://somoskudasai.com/';
-		const result = await axios.get(url);	
-		const $ = cheerio.load(result.data);
+		const html = await axios('https://somoskudasai.com/');
+		const $ = cheerio.load(html.data);
 		const noticias = [];
 
-    $('.ar-featured .swiper-slide').each((i, elem) => {
+		$('.ar-featured .swiper-slide').each(function() {
 			const noticia = {
-				titulo: $(elem).find('a').attr('aria-label'),
-				url: $(elem).find('a').attr('href'),
-				img: $(elem).find('img').attr('src'),
+				titulo: $(this).find('a').attr('aria-label'),
+				url: $(this).find('a').attr('href'),
+				img: $(this).find('img').attr('src'),
 			};
-		noticias.push(noticia);
+			noticias.push(noticia);
 		});
 
-	  await client.set('populares', JSON.stringify(noticias), 'EX', 5400);			
+		await client.set('populares', JSON.stringify(noticias), 'EX', 5400);
 		client.quit();
 		return noticias;
 	}
-}
+};
 
 module.exports = Populares;
