@@ -5,10 +5,11 @@ const Home = require('./Rutas.json');
 /*/ Noticias */
 const { Reviews, Populares, MasNoticias, Recientes } = require('./Script/News')
 
+
 /*/  Animes  */
-const { LastEpisodes } = require('./Script/Animes/lastEpisodes.js');
-
-
+const { LastEpisodes } = require('./Script/Animes/LastEpisodes.js');
+const { MoreInfo } = require('./Script/Animes/MoreInfo.js');
+const { VerEpisodio } = require('./Script/Animes/VerEpisodio.js');
 
 
 app.get('/', (req, res) => {
@@ -50,16 +51,28 @@ app.get('/api/news/:categoria', (req, res) => {
 })
 
 
-app.get('/api/anime/:opcion', (req, res) => {
+app.get('/api/anime/:opcion/:id', (req, res) => {
       switch (req.params.opcion) {
         case 'lastEpisodes':
             LastEpisodes().then(animes => {
                 res.json(animes);
             });
             break;
+        case 'moreInfo':
+          MoreInfo(req.params.id).then(animes => {
+            res.json(animes);
+            });
+            break;
+
+        case 'verEpisodio':
+            
+          VerEpisodio(req.params.id).then(animes => {   
+            res.json(animes);
+            });
+    
             
 
-
+            break;
         default:
             res.send('No se encontro la opcion').end();
             break;
@@ -76,9 +89,6 @@ app.get('/api/anime/:opcion', (req, res) => {
 
 
 })
-
-
-
 
 
 
