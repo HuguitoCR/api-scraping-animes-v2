@@ -19,12 +19,12 @@ const LastEpisodes = async() => {
 		const LastEpisodes = [];
 
 				
-		$('.capitulos-grid .item').each((i, elem) => {
+		$('.capitulos-grid .item').each(function(){
 			const Episodio = {
-				titulo: $(elem).find('div.overtitle').text().split('\n').join(''),
-				url: $(elem).find('a').attr('href').split('https://www.animefenix.com/')[1],
-				imagen: $(elem).find('img').attr('src'),
-				episodios: $(elem).find('div.overepisode').text().split('\n').join('')
+				titulo: $(this).find('div.overtitle').text().split('\n').join(''),
+				url: $(this).find('a').attr('href').split('https://www.animefenix.com/')[1],
+				imagen: $(this).find('img').attr('src'),
+				episodios: $(this).find('div.overepisode').text().split('\n').join('')
 			};
 			LastEpisodes.push(Episodio);
 		});

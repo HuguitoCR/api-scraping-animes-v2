@@ -40,4 +40,4 @@ const VerEpisodio = async (id) => {
 		
 };
 
-exports.VerEpisodio = VerEpisodio;
+module.exports = VerEpisodio;

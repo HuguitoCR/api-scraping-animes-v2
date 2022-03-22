@@ -33,7 +33,7 @@ const MoreInfo = async(Anime) => {
 		episodes.push({ episodio, link });
 	});
 
-	return result = { info, episodes };
+	return { info, episodes };
 };
 
 module.exports = MoreInfo;
