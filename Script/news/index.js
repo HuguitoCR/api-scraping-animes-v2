@@ -1,9 +1,11 @@
-const reviews = require('./Reviews');
-const masNoticias = require('./MasNoticias');
-const populares = require('./Populares');
-const recientes = require('./Recientes');
+const Reviews = require('./Reviews');
+const MasNoticias = require('./MasNoticias');
+const Populares = require('./Populares');
+const Recientes = require('./Recientes');
 
-exports.Reviews = reviews;
-exports.MasNoticias = masNoticias;
-exports.Populares = populares;
-exports.Recientes = recientes;
+module.exports = {
+	MasNoticias,
+	Reviews,
+	Populares,
+	Recientes
+};
