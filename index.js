@@ -1,12 +1,9 @@
 const express = require('express');
 const app = express();
-const  Home = require('./Rutas.json');
+const Home = require('./Rutas.json');
 
 /*/ Noticias */
-const { MasNoticias } = require('./Script/News/MasNoticias.js');
-const { Recientes } = require('./Script/News/Recientes.js');
-const { Populares } = require('./Script/News/Populares.js');
-const { Reviews } = require('./Script/News/Reviews.js');
+const { Reviews, Populares, MasNoticias, Recientes } = require('./Script/News')
 
 /*/  Animes  */
 const { LastEpisodes } = require('./Script/Animes/lastEpisodes.js');
