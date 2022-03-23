@@ -48,7 +48,7 @@ animesRouter.get('/:opcion/:id', async (req, res) => {
 			const URL = $('.player-container').find('script').html().match(/(?<=src=["'])([^"'])*/gm);
 	
 			Nombre.forEach(async(element, index) => {
-				const data = await axios(URL[index]);
+				const data = await axios(URL[index].replace('amp;', ''));
 				const $$ = cheerio.load(data.data);
 				const livideo = $$('script').html().match(/(?<=src=["'])([^"'])*/gm).map(it => {
 					return it.replace('..', '').replace('/stream/amz.php?', 'https://www.animefenix.com/stream/amz.php').replace('/stream/fl.php?v=https://', 'https://www.animefenix.com/redirect.php?player=22&code=');
