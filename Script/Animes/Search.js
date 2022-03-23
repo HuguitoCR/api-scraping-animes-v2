@@ -1,21 +1,18 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
+const { getHtml } = require('../../helpers');
 
-async function Search(id) {
-	
-	const url = `https://www.animefenix.com/animes?q=${id}`; 
-	const result = await axios.get(url);
-	const datos = cheerio.load(result.data);
+const Search = async (id) => {
+	const $ = getHtml(`https://www.animefenix.com/animes?q=${id}`);
 	const results = [];
 
-	datos('div.list-series article.serie-card').each(function() {
-		const title = datos(this).find('a').attr('title');
-		const id = datos(this).find('a').attr('href').split('https://www.animefenix.com/')[1];
-		const imagen = datos(this).find('img').attr('src');
-		results.push({ title, imagen, id });
+	$('div.list-series article.serie-card').each(function() {
+		const anime = {
+			title: $(this).find('a').attr('title'),
+			id: $(this).find('a').attr('href').split('https://www.animefenix.com/')[1],
+			img: $(this).find('img').attr('src'),
+		};
+		results.push(anime);
 	});
 	return results; 
-}
-
+};
 
 module.exports = Search;
