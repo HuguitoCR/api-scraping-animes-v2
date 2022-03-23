@@ -1,8 +1,5 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
+const { getHtml } = require('../../helpers');
 const Redis = require('ioredis');
-
-
 
 const LastEpisodes = async() => {
 	const client = new Redis(process.env.REDIS_URL);
@@ -13,20 +10,17 @@ const LastEpisodes = async() => {
 		return JSON.parse(reply); 
 	}
 	else {
-		const url = 'https://www.animefenix.com/';
-		const result = await axios.get(url);
-		const $ = cheerio.load(result.data);
+		const $ = getHtml('https://www.animefenix.com/');
 		const LastEpisodes = [];
 
-				
 		$('.capitulos-grid .item').each(function(){
-			const Episodio = {
+			const episodio = {
 				id: $(this).find('a').attr('href').split('https://www.animefenix.com/')[1],
 				title: $(this).find('div.overtitle').text().split('\n').join(''),
 				img: $(this).find('img').attr('src'),
 				episode: $(this).find('div.overepisode').text().split('\n').join('')
 			};
-			LastEpisodes.push(Episodio);
+			LastEpisodes.push(episodio);
 		});
 		
 
