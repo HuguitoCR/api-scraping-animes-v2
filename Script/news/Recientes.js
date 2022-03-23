@@ -15,10 +15,10 @@ const Recientes = async() => {
 
 		$('.news-list .ar.por').each(function() {
 			const noticia = {
-				titulo: $(this).find('a').attr('aria-label'),
+				title: $(this).find('a').attr('aria-label'),
 				url: $(this).find('a').attr('href'),
 				img: $(this).find('img').attr('src'),
-				fecha: $(this).find('span.db').text().trim()
+				date: $(this).find('span.db').text().trim()
 			};
 			noticias.push(noticia);
 		});

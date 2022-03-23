@@ -15,7 +15,7 @@ const Populares = async() => {
 
 		$('.ar-featured .swiper-slide').each(function() {
 			const noticia = {
-				titulo: $(this).find('a').attr('aria-label'),
+				title: $(this).find('a').attr('aria-label'),
 				url: $(this).find('a').attr('href'),
 				img: $(this).find('img').attr('src'),
 			};
