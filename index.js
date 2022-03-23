@@ -1,10 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const Home = require('./Rutas.json');
+
 
 const newsRouter = require('./controllers/news');
 const animesRouter = require('./controllers/animes');
 
+app.use(cors());
 
 app.get('/', (req, res) => {
 	res.json(Home);
