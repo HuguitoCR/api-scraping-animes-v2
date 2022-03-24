@@ -18,7 +18,7 @@ app.use('/api/news', newsRouter);
 app.use('/api/anime', animesRouter);
 
 
-const port = 3001;
+const port = process.env.PORT ||3001;
 app.listen(port, () => {
 	console.log(`Ya se levanto (el servidor)🥵 http://localhost:${port}`);
 });
