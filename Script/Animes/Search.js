@@ -1,7 +1,7 @@
 const { getHtml } = require('../../helpers');
 
 const Search = async (id) => {
-	const $ = getHtml(`https://www.animefenix.com/animes?q=${id}`);
+	const $ = await getHtml(`https://www.animefenix.com/animes?q=${id}`);
 	const results = [];
 
 	$('div.list-series article.serie-card').each(function() {

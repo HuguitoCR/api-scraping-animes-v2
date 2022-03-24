@@ -4,8 +4,8 @@
   "description": "Api de animes echa por Kevin y Hugo ",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js",
+    "dev": "nodemon home.js",
+    "start": "node home.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "kevin y Hugo",
