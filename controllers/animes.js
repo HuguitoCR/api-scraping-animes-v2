@@ -8,12 +8,17 @@ const { ActualizarDir,
 	LastEpisodes, 
 	MoreInfo, 
 	Search, 
-	VerEpisodio 
+	VerEpisodio,
+	DirectorioFuturo
 } = require('../Script/Animes');
 
 
 animesRouter.get('/lastepisodes', async (req, res) => {
 	await LastEpisodes().then(data => res.json(data));
+});
+
+animesRouter.get('/futuro', async (req, res) => {
+	await DirectorioFuturo(res);
 });
 
 animesRouter.get('/directorio', async (req, res) => {
@@ -38,9 +43,7 @@ animesRouter.get('/:opcion/:id', async (req, res) => {
 		break;
 
 	case 'verEpisodio': 
-		
-		VerEpisodio(req.params.id, res);
-		
+		await VerEpisodio(req.params.id, res);
 		break;
 
 	case 'search':

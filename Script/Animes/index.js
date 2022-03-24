@@ -5,6 +5,7 @@ const LastEpisodes = require('./lastEpisodes');
 const MoreInfo = require('./MoreInfo');
 const Search = require('./Search');
 const VerEpisodio = require('./VerEpisodio');
+const DirectorioFuturo = require('./Futuro');
 
 module.exports = {
 	ActualizarDir,
@@ -13,5 +14,6 @@ module.exports = {
 	LastEpisodes,
 	MoreInfo,
 	Search,
-	VerEpisodio
+	VerEpisodio,
+	DirectorioFuturo
 };

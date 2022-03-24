@@ -10,7 +10,7 @@ const LastEpisodes = async() => {
 		return JSON.parse(reply); 
 	}
 	else {
-		const $ = getHtml('https://www.animefenix.com/');
+		const $ = await getHtml('https://www.animefenix.com/');
 		const LastEpisodes = [];
 
 		$('.capitulos-grid .item').each(function(){
