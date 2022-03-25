@@ -15,7 +15,7 @@ const LastEpisodes = async(res) => {
 
 		$('.capitulos-grid .item').each(function(){
 			const episodio = {
-				id: $(this).find('a').attr('href').split('https://www.animefenix.com/')[1],
+				id: $(this).find('a').attr('href').split('https://www.animefenix.com/')[1].split('/')[1],
 				title: $(this).find('div.overtitle').text().split('\n').join(''),
 				img: $(this).find('img').attr('src'),
 				episode: $(this).find('div.overepisode').text().split('\n').join(''),
