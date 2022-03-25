@@ -1,13 +1,13 @@
 const { getHtml } = require('../../helpers');
 const Redis = require('ioredis');
 
-const Recientes = async() => {
+const Recientes = async(res) => {
 	const client = new Redis(process.env.REDIS_URL);
 	const reply = await client.get('recientes');
 
 	if (reply) {
 		client.quit();
-		return JSON.parse(reply);
+		res.json(JSON.parse(reply));
 	}
 	else {
 		const $ = await getHtml('https://somoskudasai.com/');
@@ -25,7 +25,7 @@ const Recientes = async() => {
 
 		await client.set('recientes', JSON.stringify(noticias), 'EX', 5400);	
 		client.quit();
-		return noticias;
+		res.json(noticias);
 	}
 };
 

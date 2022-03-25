@@ -1,6 +1,4 @@
 const animesRouter = require('express').Router();
-//const axios = require('axios');
-//const cheerio = require('cheerio');
 
 const { ActualizarDir, 
 	DirQuery, 
@@ -14,7 +12,7 @@ const { ActualizarDir,
 
 
 animesRouter.get('/lastepisodes', async (req, res) => {
-	await LastEpisodes().then(data => res.json(data));
+	await LastEpisodes(res);
 });
 
 animesRouter.get('/futuro', async (req, res) => {
@@ -22,11 +20,11 @@ animesRouter.get('/futuro', async (req, res) => {
 });
 
 animesRouter.get('/directorio', async (req, res) => {
-	await Directorio().then(data => res.json(data));
+	await Directorio(res);
 });
 
 animesRouter.get('/directorio/actualizar', async (req, res) => {
-	await ActualizarDir().then(data => res.json(data));
+	await ActualizarDir(res);
 });
 
 animesRouter.get('/directorio/:query', async (req, res) => {
@@ -37,9 +35,7 @@ animesRouter.get('/:opcion/:id', async (req, res) => {
 	switch (req.params.opcion) {
 	
 	case 'moreInfo':
-		await MoreInfo(req.params.id).then(animes => {
-			res.json(animes);
-		});
+		await MoreInfo(req.params.id, res);
 		break;
 
 	case 'verEpisodio': 
@@ -47,9 +43,7 @@ animesRouter.get('/:opcion/:id', async (req, res) => {
 		break;
 
 	case 'search':
-		await Search(req.params.id).then(animes => {                    
-			res.json(animes);
-		});
+		await Search(req.params.id, res);
 		break;
 
 	default:

@@ -2,7 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const Redis = require('ioredis');
 
-const ActualizarDirectorio = async() => {
+const ActualizarDirectorio = async(res) => {
 	const client = new Redis(process.env.REDIS_URL);
 	const url = 'https://www.animefenix.com/animes?page=';
 	const Directorio = [];
@@ -35,7 +35,7 @@ const ActualizarDirectorio = async() => {
 			else {
 				client.set('directorio', JSON.stringify(Directorio));
 				client.quit();
-				return JSON.stringify('Directorio Actualizado');
+				res.json([{ status: 'ok' }]);
 			}
 		};
 		getAnimes(inicio);

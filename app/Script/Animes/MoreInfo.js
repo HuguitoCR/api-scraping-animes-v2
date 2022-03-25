@@ -1,7 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const MoreInfo = async(Anime) => {
+const MoreInfo = async(Anime, res) => {
 	const url = `https://www.animefenix.com/${Anime}`;
 	const repuesta = await axios.get(url);
 	const datos = cheerio.load(repuesta.data);
@@ -33,7 +33,7 @@ const MoreInfo = async(Anime) => {
 		episodes.push({ episodio, link });
 	});
 
-	return { info, episodes };
+	res.json({ info, episodes });
 };
 
 module.exports = MoreInfo;

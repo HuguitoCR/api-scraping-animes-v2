@@ -1,6 +1,6 @@
 const { getHtml } = require('../../helpers');
 
-const MasNoticias = async() => {
+const MasNoticias = async(res) => {
 	const $ = await getHtml('https://somoskudasai.com/');
 	const noticias = [];
 
@@ -13,7 +13,7 @@ const MasNoticias = async() => {
 		noticias.push(noticia);
 	});
 
-	return noticias;
+	res.json(noticias);
 };
 
 module.exports = MasNoticias;

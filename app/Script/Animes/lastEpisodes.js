@@ -1,13 +1,13 @@
 const { getHtml } = require('../../helpers');
 const Redis = require('ioredis');
 
-const LastEpisodes = async() => {
+const LastEpisodes = async(res) => {
 	const client = new Redis(process.env.REDIS_URL);
 	const reply = await client.get('lastEpisodes');
 
 	if (reply) {
 		client.quit();
-		return JSON.parse(reply); 
+		res.json(JSON.parse(reply)); 
 	}
 	else {
 		const $ = await getHtml('https://www.animefenix.com/');
@@ -27,7 +27,7 @@ const LastEpisodes = async() => {
 		client.set('lastEpisodes', JSON.stringify(LastEpisodes), 'EX', 1800);
 		client.quit();
 
-		return LastEpisodes;
+		res.json(LastEpisodes);
 	}
 };
 
