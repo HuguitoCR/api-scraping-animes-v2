@@ -1,28 +1,20 @@
 const newsRouter = require('express').Router();
 const { Reviews, Populares, MasNoticias, Recientes } = require('../Script/News');
 
-newsRouter.get('/:categoria', async (req , res) => {
-	switch (req.params.categoria) {
-	case 'masnoticias':
-		await MasNoticias(res);
-		break;
+newsRouter.get('/masnoticias', async (req , res) => {
+	await MasNoticias(res);
+});
 
-	case 'populares':
-		await Populares(res);
-		break;  
+newsRouter.get('/populares', async (req , res) => {
+	await Populares(res);
+});
 
-	case 'recientes':
-		await Recientes(res);
-		break;
-    
-	case 'reviews':
-		await Reviews(res);
-		break;
+newsRouter.get('/recientes', async (req , res) => {
+	await Recientes(res);
+});
 
-	default:
-		res.send('No se encontro la categoria').end();
-		break;   
-	}
+newsRouter.get('/reviews', async (req , res) => {
+	await Reviews(res);
 });
 
 module.exports = newsRouter;

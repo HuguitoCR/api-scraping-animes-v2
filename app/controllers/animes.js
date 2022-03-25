@@ -1,6 +1,7 @@
 const animesRouter = require('express').Router();
 
-const { ActualizarDir, 
+const { 
+	ActualizarDir, 
 	DirQuery, 
 	Directorio, 
 	LastEpisodes, 
@@ -31,25 +32,16 @@ animesRouter.get('/directorio/:query', async (req, res) => {
 	await DirQuery(req.params.query).then(data => res.json(data));
 });
 
-animesRouter.get('/:opcion/:id', async (req, res) => {
-	switch (req.params.opcion) {
-	
-	case 'moreInfo':
-		await MoreInfo(req.params.id, res);
-		break;
+animesRouter.get('/moreInfo/:id', async (req, res) => {
+	await MoreInfo(req.params.id, res);
+});
 
-	case 'verEpisodio': 
-		await VerEpisodio(req.params.id, res);
-		break;
+animesRouter.get('/verEpisodio/:id', async (req, res) => {
+	await VerEpisodio(req.params.id, res);
+});
 
-	case 'search':
-		await Search(req.params.id, res);
-		break;
-
-	default:
-		res.send('No se encontro la opcion').end();
-		break;
-	}      
+animesRouter.get('/search/:id', async (req, res) => {
+	await Search(req.params.id, res);
 });
 
 module.exports = animesRouter;
