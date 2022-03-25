@@ -18,7 +18,9 @@ const LastEpisodes = async(res) => {
 				id: $(this).find('a').attr('href').split('https://www.animefenix.com/')[1],
 				title: $(this).find('div.overtitle').text().split('\n').join(''),
 				img: $(this).find('img').attr('src'),
-				episode: $(this).find('div.overepisode').text().split('\n').join('')
+				episode: $(this).find('div.overepisode').text().split('\n').join(''),
+				name_id: $(this).find('img').attr('src').split('https://www.animefenix.com/')[1].split('/')[4].split('.jpg')[0].split('.png')[0]
+
 			};
 			LastEpisodes.push(episodio);
 		});
