@@ -13,7 +13,7 @@ const Reviews = async(res) => {
 		noticias.push(noticia);
 	});
 
-	res.json(noticias);
+	res.json({ noticias });
 };
 
 module.exports = Reviews;

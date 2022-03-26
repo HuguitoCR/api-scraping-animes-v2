@@ -24,7 +24,7 @@ const Populares = async(res) => {
 
 		await client.set('populares', JSON.stringify(noticias), 'EX', 5400);
 		client.quit();
-		res.json(noticias);
+		res.json({ noticias });
 	}
 };
 

@@ -13,7 +13,7 @@ const MasNoticias = async(res) => {
 		noticias.push(noticia);
 	});
 
-	res.json(noticias);
+	res.json({ noticias });
 };
 
 module.exports = MasNoticias;

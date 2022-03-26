@@ -25,7 +25,7 @@ const Recientes = async(res) => {
 
 		await client.set('recientes', JSON.stringify(noticias), 'EX', 5400);	
 		client.quit();
-		res.json(noticias);
+		res.json({ noticias });
 	}
 };
 
