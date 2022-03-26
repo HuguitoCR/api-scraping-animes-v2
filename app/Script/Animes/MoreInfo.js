@@ -28,7 +28,7 @@ const MoreInfo = async(Anime, res) => {
 		episodes.push(episode);
 	});
 
-	res.json({ info, episodes });
+	res.json({ info: info[0], episodes });
 };
 
 module.exports = MoreInfo;
