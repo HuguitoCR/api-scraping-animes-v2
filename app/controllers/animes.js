@@ -32,11 +32,11 @@ animesRouter.get('/directorio/:query', async (req, res) => {
 	await DirQuery(req.params.query).then(data => res.json(data));
 });
 
-animesRouter.get('/moreInfo/:id', async (req, res) => {
+animesRouter.get('/moreinfo/:id', async (req, res) => {
 	await MoreInfo(req.params.id, res);
 });
 
-animesRouter.get('/verEpisodio/:id', async (req, res) => {
+animesRouter.get('/verepisodio/:id', async (req, res) => {
 	await VerEpisodio(req.params.id, res);
 });
 
