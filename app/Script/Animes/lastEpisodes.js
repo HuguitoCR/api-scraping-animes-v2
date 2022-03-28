@@ -29,7 +29,7 @@ const LastEpisodes = async(res) => {
 		client.set('lastEpisodes', JSON.stringify(LastEpisodes), 'EX', 1800);
 		client.quit();
 
-		res.json(LastEpisodes);
+		res.json({ LastEpisodes });
 	}
 };
 

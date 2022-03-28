@@ -35,7 +35,7 @@ const ActualizarDirectorio = async(res) => {
 			else {
 				client.set('directorio', JSON.stringify(Directorio));
 				client.quit();
-				res.json([{ status: 'ok' }]);
+				res.json({ status: 'ok' });
 			}
 		};
 		getAnimes(inicio);

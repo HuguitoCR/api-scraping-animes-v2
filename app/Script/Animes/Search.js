@@ -12,7 +12,7 @@ const Search = async (id, res) => {
 		};
 		results.push(anime);
 	});
-	res.json(results); 
+	res.json({ results }); 
 };
 
 module.exports = Search;
