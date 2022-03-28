@@ -20,7 +20,7 @@ const DirectorioFuturo = async(res) => {
 		Futuros.push({ title, img, link });
 	});
 
-	res.json(Futuros);
+	res.json({ Futuros });
 };
 
 module.exports = DirectorioFuturo;
