@@ -5,7 +5,7 @@ const MoreInfo = async(Anime, res) => {
 	const info = [];
 	const episodes = [];
 
-	$('div.columns.is-mobile.is-multiline').is(function() {
+	$('div.columns.is-mobile.is-multiline').each(function() {
 		const verifyNext = $(this).find('ul.has-text-light').children('li').children('span.has-text-orange').parent().text().split(':')[1];
 		const anime = {
 			img: $(this).find('img').attr('src'),
