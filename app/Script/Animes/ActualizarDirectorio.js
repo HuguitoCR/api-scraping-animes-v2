@@ -8,7 +8,7 @@ const ActualizarDirectorio = async(res) => {
 	const element = await getHtml('https://www.animefenix.com/animes?page=1');
 	const paginacion = element('li').last().prev().text();
 
-	for (let i = 0 ; i<=paginacion; i++){
+	for (let i = 1 ; i<=paginacion; i++){
 		const $ = await getHtml(`https://www.animefenix.com/animes?page=${i}`);
 		$('.list-series .serie-card').each(function() {
 			const anime = {
