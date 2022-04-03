@@ -13,14 +13,14 @@ const VerEpisodio = async (id, res) => {
 		const livideo = $$('script').html().match(/(?<=src=["'])([^"'])*/gm).map(it => {
 			return it.replace('..', '').replace('/stream/amz.php?', 'https://www.animefenix.com/stream/amz.php').replace('/stream/fl.php?v=https://', 'https://www.animefenix.com/redirect.php?player=22&code=');
 		});
-		
+
+		if (element == 'M'){
+			element = 'Mega';
+		}
 		lista.push({server: element, url: livideo[0] });
+
 		if (lista.length == servers.length) {
-			lista.map(it => {
-				if (it.server == 'M') it.server = 'Mega';
-				return it;
-			});
-			res.json({ anime_id, lista });
+			return res.json({ anime_id, lista });
 		}
 	});
 };
