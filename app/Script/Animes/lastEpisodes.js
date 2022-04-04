@@ -7,7 +7,7 @@ const LastEpisodes = async(res) => {
 
 	if (reply) {
 		client.quit();
-		res.json(JSON.parse(reply)); 
+		res.json({ LastEpisodes: JSON.parse(reply), source: 'cache'}); 
 	}
 	else {
 		const $ = await getHtml('https://www.animefenix.com/');
@@ -29,7 +29,7 @@ const LastEpisodes = async(res) => {
 		client.set('lastEpisodes', JSON.stringify(LastEpisodes), 'EX', 1800);
 		client.quit();
 
-		res.json({ LastEpisodes });
+		res.json({ LastEpisodes, source: 'api' });
 	}
 };
 

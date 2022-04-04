@@ -28,5 +28,4 @@ const Recientes = async(res) => {
 		res.json({ noticias, source: 'api' });
 	}
 };
-
 module.exports = Recientes;
