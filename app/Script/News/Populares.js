@@ -7,7 +7,7 @@ const Populares = async(res) => {
 
 	if (reply) {
 		client.quit();
-		return JSON.parse(reply);
+		res.json({ noticias: JSON.parse(reply), source: 'cache'});
 	}
 	else {
 		const $ = await getHtml('https://somoskudasai.com/');
@@ -24,7 +24,7 @@ const Populares = async(res) => {
 
 		await client.set('populares', JSON.stringify(noticias), 'EX', 5400);
 		client.quit();
-		res.json({ noticias });
+		res.json({ noticias, source: 'api'});
 	}
 };
 

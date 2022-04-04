@@ -7,7 +7,7 @@ const Recientes = async(res) => {
 
 	if (reply) {
 		client.quit();
-		res.json(JSON.parse(reply));
+		res.json({ noticias: JSON.parse(reply), source: 'cache' });
 	}
 	else {
 		const $ = await getHtml('https://somoskudasai.com/');
@@ -25,7 +25,7 @@ const Recientes = async(res) => {
 
 		await client.set('recientes', JSON.stringify(noticias), 'EX', 5400);	
 		client.quit();
-		res.json({ noticias });
+		res.json({ noticias, source: 'api' });
 	}
 };
 
