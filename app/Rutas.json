@@ -1,5 +1,5 @@
 {
-	"Info": "Project Torii-API. Endpoints para la obtención contenido relacionado al anime",
+	"Info": "Project Torii-API. Endpoints para la obtención de contenido relacionado al anime",
 	"Ruta": "api/{contenido}",
 	"contenido": {
 		"anime/{opcion}": [
