@@ -9,4 +9,4 @@ jobs:
       - name: Call our API route
         run: |
           curl --request GET \
-          --url 'https://api-torii.herokuapp.com/api/anime/directorio/actualizar' \
+          --url 'https://api-torii.up.railway.app/api/anime/directorio/actualizar' \
