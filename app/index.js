@@ -1,14 +1,14 @@
 const express = require('express');
 const cors = require('cors');
+
 const app = express();
 const Home = require('./Rutas.json');
 
-
 const newsRouter = require('./controllers/news');
 const animesRouter = require('./controllers/animes');
+const { errorHandler } = require('./helpers');
 
 app.use(cors());
-
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -19,6 +19,7 @@ app.use('/api/news', newsRouter);
 
 app.use('/api/anime', animesRouter);
 
+app.use(errorHandler);
 
 const port = process.env.PORT ||3001;
 app.listen(port, () => {
