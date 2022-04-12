@@ -8,7 +8,7 @@ const Home = require('./Rutas.json');
 
 const newsRouter = require('./controllers/news');
 const animesRouter = require('./controllers/animes');
-const { errorHandler } = require('./helpers');
+const { notFound, errorHandler } = require('./middlewares');
 
 app.use(cors());
 app.use(helmet());
@@ -20,9 +20,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/news', newsRouter);
-
 app.use('/api/anime', animesRouter);
 
+app.use(notFound);
 app.use(errorHandler);
 
 const port = process.env.PORT ||3001;
