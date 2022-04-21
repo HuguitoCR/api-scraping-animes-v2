@@ -1,47 +1,42 @@
 const animesRouter = require('express').Router();
 
 const { 
-	ActualizarDir, 
-	//DirQuery, 
-	Directorio, 
-	LastEpisodes, 
-	MoreInfo, 
-	Search, 
-	VerEpisodio,
-	DirectorioFuturo
+	directory, 
+	updateDirectory,
+	futureAnime,
+	animeInfo,
+	lastEpisodes,
+	search,
+	watchEpisode
 } = require('../Script/Animes');
 
 
 animesRouter.get('/lastepisodes', async (req, res, next) => {
-	await LastEpisodes(res).catch(err => next(err));
+	await lastEpisodes(res).catch(err => next(err));
 });
 
-animesRouter.get('/futuro', async (req, res, next) => {
-	await DirectorioFuturo(res).catch(err => next(err));
+animesRouter.get('/animeinfo/:id', async (req, res, next) => {
+	await animeInfo(req.params.id, res).catch(err => next(err));
 });
 
-animesRouter.get('/directorio', async (req, res, next) => {
-	await Directorio(res).catch(err => next(err));
-});
-
-animesRouter.get('/directorio/actualizar', async (req, res, next) => {
-	await ActualizarDir(res).catch(err => next(err));
-});
-
-/*animesRouter.get('/directorio/:query', async (req, res) => {
-	await DirQuery(req.params.query).then(data => res.json(data)).catch(err => next(err));
-});*/
-
-animesRouter.get('/moreinfo/:id', async (req, res, next) => {
-	await MoreInfo(req.params.id, res).catch(err => next(err));
-});
-
-animesRouter.get('/verepisodio/:id', async (req, res, next) => {
-	await VerEpisodio(req.params.id, res).catch(err => next(err));
+animesRouter.get('/ver/:id', async (req, res, next) => {
+	await watchEpisode(req.params.id, res).catch(err => next(err));
 });
 
 animesRouter.get('/search/:id', async (req, res, next) => {
-	await Search(req.params.id, res).catch(err => next(err));
+	await search(req.params.id, res).catch(err => next(err));
+});
+
+animesRouter.get('/future', async (req, res, next) => {
+	await futureAnime(res).catch(err => next(err));
+});
+
+animesRouter.get('/directory', async (req, res, next) => {
+	await directory(res).catch(err => next(err));
+});
+
+animesRouter.get('/directory/update', async (req, res, next) => {
+	await updateDirectory(res).catch(err => next(err));
 });
 
 module.exports = animesRouter;
