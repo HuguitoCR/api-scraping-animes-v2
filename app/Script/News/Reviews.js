@@ -1,20 +1,20 @@
 const { getHtml } = require('../../helpers');
 
-const Reviews = async(res) => {
+const reviews = async (res) => {
 	const $ = await getHtml('https://somoskudasai.com/');
-	const noticias = [];
+	const news = [];
 	
 	$('.ar-reviews .swiper-slide').each(function() {
 		const $this = $(this);
-		const noticia = {
+		const newsObject = {
 			title: $this.find('a').attr('aria-label'),
 			url: $this.find('a').attr('href'),
 			img: $this.find('img').attr('src'),
 		};
-		noticias.push(noticia);
+		news.push(newsObject);
 	});
 
-	res.json({ noticias });
+	res.json({ news });
 };
 
-module.exports = Reviews;
+module.exports = reviews;
