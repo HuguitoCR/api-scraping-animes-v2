@@ -8,7 +8,7 @@ const {
 	lastEpisodes,
 	search,
 	watchEpisode
-} = require('../Script/Animes');
+} = require('../script/animes');
 
 
 animesRouter.get('/lastepisodes', async (req, res, next) => {

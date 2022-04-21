@@ -1,5 +1,5 @@
 const newsRouter = require('express').Router();
-const { reviews, popular, moreNews, recent } = require('../Script/News');
+const { reviews, popular, moreNews, recent } = require('../script/news');
 
 newsRouter.get('/more', async (req, res, next) => {
 	await moreNews(res).catch(err => next(err));
