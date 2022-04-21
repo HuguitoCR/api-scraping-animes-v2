@@ -5,11 +5,12 @@ const DirectorioFuturo = async(res) => {
 	const Futuros = [];
 
 	$('div.seasonal-anime').each(function() {
-		const verifyImg = $(this).find('img').attr('src');
+		const $this = $(this);
+		const verifyImg = $this.find('img').attr('src');
 		const anime = {
-			title: $(this).find('a.link-title').text().trim(),
-			img: verifyImg ? verifyImg : $(this).find('img').attr('data-src'),
-			link: $(this).find('a').attr('href'),
+			title: $this.find('a.link-title').text().trim(),
+			img: verifyImg ? verifyImg : $this.find('img').attr('data-src'),
+			link: $this.find('a').attr('href'),
 		};
 		
 		Futuros.push(anime);

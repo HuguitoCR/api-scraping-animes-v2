@@ -14,11 +14,12 @@ const Recientes = async(res) => {
 		const noticias = [];
 
 		$('.news-list .ar.por').each(function() {
+			const $this = $(this);
 			const noticia = {
-				title: $(this).find('a').attr('aria-label'),
-				url: $(this).find('a').attr('href'),
-				img: $(this).find('img').attr('src'),
-				date: $(this).find('span.db').text().trim()
+				title: $this.find('a').attr('aria-label'),
+				url: $this.find('a').attr('href'),
+				img: $this.find('img').attr('src'),
+				date: $this.find('span.db').text().trim()
 			};
 			noticias.push(noticia);
 		});

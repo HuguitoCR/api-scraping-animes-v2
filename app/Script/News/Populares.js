@@ -14,10 +14,11 @@ const Populares = async(res) => {
 		const noticias = [];
 
 		$('.ar-featured .swiper-slide').each(function() {
+			const $this = $(this);
 			const noticia = {
-				title: $(this).find('a').attr('aria-label'),
-				url: $(this).find('a').attr('href'),
-				img: $(this).find('img').attr('src'),
+				title: $this.find('a').attr('aria-label'),
+				url: $this.find('a').attr('href'),
+				img: $this.find('img').attr('src'),
 			};
 			noticias.push(noticia);
 		});
