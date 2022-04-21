@@ -2,9 +2,9 @@ const { getHtml } = require('../../helpers');
 
 const watchEpisode = async (id, res) => {
 	const $ = await getHtml(`https://www.animefenix.com/ver/${id}`);
-	const episideURL = [];
+	const episodeURL = [];
 
-	const anime_id = $('.column .is-6-desktop').find('a').attr('href').split('https://www.animefenix.com/')[1];
+	const animeId = $('.column .is-6-desktop').find('a').attr('href').split('https://www.animefenix.com/')[1];
 	const servers = $('ul.episode-page__servers-list > li').toArray().map((element) => $(element).text().trim());
 	const serverURL = $('.player-container').find('script').html().match(/(?<=src=["'])([^"'])*/gm);
 
@@ -18,10 +18,10 @@ const watchEpisode = async (id, res) => {
 		if (element == 'M'){
 			element = 'Mega';
 		}
-		episideURL.push({server: element, url: videoLink[0] });
+		episodeURL.push({server: element, url: videoLink[0] });
 
-		if (episideURL.length == servers.length) {
-			return res.json({ anime_id, episideURL });
+		if (episodeURL.length == servers.length) {
+			return res.json({ anime_id: animeId, episode_URL: episodeURL });
 		}
 	});
 };
