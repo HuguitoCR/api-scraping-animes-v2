@@ -1,8 +1,8 @@
 const { getHtml } = require('../../helpers');
 
-const DirectorioFuturo = async(res) => {
+const futureAnime = async(res) => {
 	const $ = await getHtml('https://myanimelist.net/anime/season/later');
-	const Futuros = [];
+	const future = [];
 
 	$('div.seasonal-anime').each(function() {
 		const $this = $(this);
@@ -13,10 +13,10 @@ const DirectorioFuturo = async(res) => {
 			link: $this.find('a').attr('href'),
 		};
 		
-		Futuros.push(anime);
+		future.push(anime);
 	});
 
-	res.json({ Futuros });
+	res.json({ future });
 };
 
-module.exports = DirectorioFuturo;
+module.exports = futureAnime;

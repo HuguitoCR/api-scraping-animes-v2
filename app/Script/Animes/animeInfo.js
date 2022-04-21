@@ -1,7 +1,7 @@
 const { getHtml } = require('../../helpers');
 
-const MoreInfo = async(Anime, res) => {
-	const $ = await getHtml(`https://www.animefenix.com/${Anime}`);
+const animeInfo = async (anime, res) => {
+	const $ = await getHtml(`https://www.animefenix.com/${anime}`);
 	const info = [];
 	const episodes = [];
 
@@ -33,4 +33,4 @@ const MoreInfo = async(Anime, res) => {
 	res.json({ info: info[0], episodes });
 };
 
-module.exports = MoreInfo;
+module.exports = animeInfo;

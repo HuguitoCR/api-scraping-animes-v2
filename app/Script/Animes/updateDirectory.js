@@ -1,14 +1,14 @@
 const { getHtml } = require('../../helpers');
 const Redis = require('ioredis');
 
-const ActualizarDirectorio = async(res) => {
+const updateDirecotry = async (res) => {
 	const client = new Redis(process.env.REDIS_URL);
-	const Directorio = [];
+	const directory = [];
 
 	const element = await getHtml('https://www.animefenix.com/animes?page=1');
-	const paginacion = element('li').last().prev().text();
+	const lastPage = element('li').last().prev().text();
 
-	for (let i = 1 ; i<=paginacion; i++){
+	for (let i = 1 ; i<= lastPage; i++){
 		const $ = await getHtml(`https://www.animefenix.com/animes?page=${i}`);
 		$('.list-series .serie-card').each(function() {
 			const $this = $(this);
@@ -21,13 +21,13 @@ const ActualizarDirectorio = async(res) => {
 				type: $this.find('span.type').text(),
 				description: $this.find('p').text().split('\n').join('').split('"').join(''),
 			};
-			Directorio.push(anime);
+			directory.push(anime);
 		});
 	}
 		
-	client.set('directorio', JSON.stringify(Directorio));
+	client.set('directory', JSON.stringify(directory));
 	client.quit();
 	res.json({ status: 'ok' });
 };
 
-module.exports = ActualizarDirectorio;
+module.exports = updateDirecotry;

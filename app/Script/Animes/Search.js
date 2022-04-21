@@ -1,6 +1,6 @@
 const { getHtml } = require('../../helpers');
 
-const Search = async (id, res) => {
+const search = async (id, res) => {
 	const $ = await getHtml(`https://www.animefenix.com/animes?q=${id}`);
 	const results = [];
 
@@ -16,4 +16,4 @@ const Search = async (id, res) => {
 	res.json({ results }); 
 };
 
-module.exports = Search;
+module.exports = search;

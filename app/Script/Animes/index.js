@@ -1,19 +1,17 @@
-const ActualizarDir = require('./ActualizarDirectorio');
-const DirQuery = require('./DirecQuery');
-const Directorio = require('./Directorio');
-const LastEpisodes = require('./lastEpisodes');
-const MoreInfo = require('./MoreInfo');
-const Search = require('./Search');
-const VerEpisodio = require('./VerEpisodio');
-const DirectorioFuturo = require('./Futuro');
+const updateDirectory = require('./updateDirectory');
+const directory = require('./directory');
+const lastEpisodes = require('./lastEpisodes');
+const animeInfo = require('./animeInfo');
+const search = require('./search');
+const watchEpisode = require('./watchEpisode');
+const futureAnime = require('./futureAnime');
 
 module.exports = {
-	ActualizarDir,
-	DirQuery,
-	Directorio,
-	LastEpisodes,
-	MoreInfo,
-	Search,
-	VerEpisodio,
-	DirectorioFuturo
+	directory,
+	updateDirectory,
+	lastEpisodes,
+	search,
+	animeInfo,
+	watchEpisode,
+	futureAnime
 };
