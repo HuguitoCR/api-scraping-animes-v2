@@ -1,19 +1,19 @@
 {
 	"Info": "Project Torii-API. Endpoints para la obtención de contenido relacionado al anime",
-	"Ruta": "api/{contenido}",
-	"contenido": {
-		"anime/{opcion}": [
-			"futuro",
-			"directorio",
+	"Ruta": "api/{content}",
+	"content": {
+		"anime/{option}": [
+			"future",
+			"directory",
 			"lastepisodes",
-			"moreinfo?q={id}",
+			"animeinfo?q={id}",
 			"search?q={query}",
-			"verepisodio/{id}"
+			"watch/{id}"
 		],
-		"news/{categoria}": [
-			"recientes",
-			"populares",
-			"masnoticias",
+		"news/{category}": [
+			"recent",
+			"popular",
+			"more",
 			"reviews"
 		]
 	}
