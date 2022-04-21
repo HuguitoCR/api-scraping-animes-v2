@@ -19,7 +19,7 @@ animesRouter.get('/animeinfo/:id', async (req, res, next) => {
 	await animeInfo(req.params.id, res).catch(err => next(err));
 });
 
-animesRouter.get('/ver/:id', async (req, res, next) => {
+animesRouter.get('/watch/:id', async (req, res, next) => {
 	await watchEpisode(req.params.id, res).catch(err => next(err));
 });
 
