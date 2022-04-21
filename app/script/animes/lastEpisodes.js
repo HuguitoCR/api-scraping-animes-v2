@@ -25,7 +25,7 @@ const lastEpisodes = async (res) => {
 			episodes.push(animeEpisode);
 		});
 		
-		client.set('lastEpisodes', JSON.stringify(lastEpisodes), 'EX', 1800);
+		client.set('lastEpisodes', JSON.stringify(episodes), 'EX', 1800);
 		client.quit();
 
 		res.json({ episodes, source: 'api' });

@@ -3,7 +3,7 @@ const Redis = require('ioredis');
 
 const recent = async (res) => {
 	const client = new Redis(process.env.REDIS_URL);
-	const reply = await client.get('recientes');
+	const reply = await client.get('recent');
 
 	if (reply) {
 		client.quit();
