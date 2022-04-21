@@ -4,7 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const app = express();
-const Home = require('./rutas.json');
+const Home = require('./routes.json');
 
 const newsRouter = require('./controllers/news');
 const animesRouter = require('./controllers/animes');
