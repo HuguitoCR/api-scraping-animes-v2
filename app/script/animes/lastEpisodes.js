@@ -1,12 +1,10 @@
 const { getHtml } = require('../../helpers');
-const Redis = require('ioredis');
+const { redisClient } = require('../../lib');
 
 const lastEpisodes = async (res) => {
-	const client = new Redis(process.env.REDIS_URL);
-	const reply = await client.get('lastEpisodes');
+	const reply = await redisClient.getKey('lastEpisodes');
 
 	if (reply) {
-		client.quit();
 		res.json({ episodes: JSON.parse(reply), source: 'cache'}); 
 	}
 	else {
@@ -25,9 +23,7 @@ const lastEpisodes = async (res) => {
 			episodes.push(animeEpisode);
 		});
 		
-		client.set('lastEpisodes', JSON.stringify(episodes), 'EX', 1800);
-		client.quit();
-
+		redisClient.setKeyWithEx('lastEpisodes', JSON.stringify(episodes), 1800);
 		res.json({ episodes, source: 'api' });
 	}
 };

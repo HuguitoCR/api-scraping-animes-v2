@@ -1,12 +1,10 @@
 const { getHtml } = require('../../helpers');
-const Redis = require('ioredis');
+const { redisClient } = require('../../lib');
 
 const recent = async (res) => {
-	const client = new Redis(process.env.REDIS_URL);
-	const reply = await client.get('recent');
+	const reply = await redisClient.getKey('recent');
 
 	if (reply) {
-		client.quit();
 		res.json({ news: JSON.parse(reply), source: 'cache' });
 	}
 	else {
@@ -24,8 +22,7 @@ const recent = async (res) => {
 			news.push(newsObject);
 		});
 
-		await client.set('recent', JSON.stringify(news), 'EX', 5400);	
-		client.quit();
+		await redisClient.setKeyWithEx('recent', JSON.stringify(news), 5400);	
 		res.json({ news, source: 'api' });
 	}
 };

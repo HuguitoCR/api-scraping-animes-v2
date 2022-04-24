@@ -1,13 +1,11 @@
 const { getHtml } = require('../../helpers');
-const Redis = require('ioredis');
+const { redisClient } = require('../../lib');
 
 const popular = async (res) => {
-	const client = new Redis(process.env.REDIS_URL);
-	const reply = await client.get('popular');
+	const reply = await redisClient.getKey('popular');
 
 	if (reply) {
-		client.quit();
-		res.json({ news: JSON.parse(reply), source: 'cache'});
+		res.json({ news: JSON.parse(reply), source: 'cache' });
 	}
 	else {
 		const $ = await getHtml('https://somoskudasai.com/');
@@ -23,8 +21,7 @@ const popular = async (res) => {
 			news.push(newsObject);
 		});
 
-		await client.set('popular', JSON.stringify(news), 'EX', 5400);
-		client.quit();
+		await redisClient.setKeyWithEx('popular', JSON.stringify(news), 5400);
 		res.json({ news, source: 'api'});
 	}
 };

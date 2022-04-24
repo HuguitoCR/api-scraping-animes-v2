@@ -1,8 +1,7 @@
 const { getHtml } = require('../../helpers');
-const Redis = require('ioredis');
+const { redisClient } = require('../../lib');
 
 const updateDirecotry = async (res) => {
-	const client = new Redis(process.env.REDIS_URL);
 	const directory = [];
 
 	const element = await getHtml('https://www.animefenix.com/animes?page=1');
@@ -25,8 +24,7 @@ const updateDirecotry = async (res) => {
 		});
 	}
 		
-	client.set('directory', JSON.stringify(directory));
-	client.quit();
+	redisClient.setKey('directory', JSON.stringify(directory));
 	res.json({ status: 'ok' });
 };
 
