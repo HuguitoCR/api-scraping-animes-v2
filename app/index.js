@@ -7,7 +7,7 @@ const Home = require('./routes.json');
 const newsRouter = require('./controllers/news');
 const animesRouter = require('./controllers/animes');
 const { notFound, errorHandler } = require('./middlewares');
-const { redisClient } =require('./helpers');
+const { redisClient } =require('./lib');
 
 const app = express();
 redisClient.initClient();
