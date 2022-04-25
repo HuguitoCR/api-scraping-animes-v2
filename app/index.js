@@ -1,33 +1,27 @@
 const express = require('express');
-const compression = require('compression');
-const cors = require('cors');
-const helmet = require('helmet');
+const load = require('./loaders');
 
-const Home = require('./routes.json');
+const home = require('./routes.json');
 const newsRouter = require('./controllers/news');
 const animesRouter = require('./controllers/animes');
 const { notFound, errorHandler } = require('./middlewares');
-const { redisClient } =require('./lib');
 
-const app = express();
-redisClient.initClient();
+(async () => {
+	const app = express();
+	await load.config({ app });
+	
+	app.get('/', (req, res) => {
+		res.json(home);
+	});
+	app.use('/api/news', newsRouter);
+	app.use('/api/anime', animesRouter);
+	
+	app.use(notFound);
+	app.use(errorHandler);
 
-app.use(cors());
-app.use(helmet());
-app.use(compression());
-app.use(express.json());
+	const port = process.env.PORT || 3001;
+	app.listen(port, () => {
+		console.log(`\nYa se levanto (el servidor)🥵 http://localhost:${port}`);
+	});
+})();
 
-app.get('/', (req, res) => {
-	res.json(Home);
-});
-
-app.use('/api/news', newsRouter);
-app.use('/api/anime', animesRouter);
-
-app.use(notFound);
-app.use(errorHandler);
-
-const port = process.env.PORT ||3001;
-app.listen(port, () => {
-	console.log(`Ya se levanto (el servidor)🥵 http://localhost:${port}`);
-});
