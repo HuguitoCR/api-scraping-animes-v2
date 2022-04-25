@@ -2,17 +2,15 @@ const Redis = require('ioredis');
 
 const client = new Redis(process.env.REDIS_URL, { lazyConnect: true });
 
-function initClient(){
-	(async()=>{
-		try{
-			await client.connect();
-			console.log(`Redis connection: ${client.status}`);
-		}
-		catch(ex){
-			console.log(`Redis ${ex}`);
-			client.disconnect();
-		}
-	})();
+async function initClient(){
+	try{
+		await client.connect();
+		console.log(`Redis connection: ${client.status}`);
+	}
+	catch(ex){
+		console.log(`Redis ${ex}`);
+		client.disconnect();
+	}
 }
 
 /**
