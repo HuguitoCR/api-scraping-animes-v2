@@ -6,8 +6,7 @@ const recent = async (res) => {
 
 	if (reply) {
 		res.json({ news: JSON.parse(reply), source: 'cache' });
-	}
-	else {
+	} else {
 		const $ = await getHtml('https://somoskudasai.com/');
 		const news = [];
 
@@ -22,7 +21,7 @@ const recent = async (res) => {
 			news.push(newsObject);
 		});
 
-		await redisClient.setKeyWithEx('recent', JSON.stringify(news), 5400);	
+		await redisClient.setKeyWithEx('recent', JSON.stringify(news), 5400);
 		res.json({ news, source: 'api' });
 	}
 };

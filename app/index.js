@@ -9,13 +9,13 @@ const { notFound, errorHandler } = require('./middlewares');
 (async () => {
 	const app = express();
 	await load.config({ app });
-	
+
 	app.get('/', (req, res) => {
 		res.json(home);
 	});
 	app.use('/api/news', newsRouter);
 	app.use('/api/anime', animesRouter);
-	
+
 	app.use(notFound);
 	app.use(errorHandler);
 
@@ -24,4 +24,3 @@ const { notFound, errorHandler } = require('./middlewares');
 		console.log(`\nYa se levanto (el servidor)🥵 http://localhost:${port}`);
 	});
 })();
-

@@ -1,5 +1,5 @@
 const redisClient = require('./redisClient');
 
-module.exports  = {
+module.exports = {
 	redisClient,
 };

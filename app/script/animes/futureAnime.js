@@ -1,6 +1,6 @@
 const { getHtml } = require('../../helpers');
 
-const futureAnime = async(res) => {
+const futureAnime = async (res) => {
 	const $ = await getHtml('https://myanimelist.net/anime/season/later');
 	const future = [];
 
@@ -12,7 +12,7 @@ const futureAnime = async(res) => {
 			img: verifyImg ? verifyImg : $this.find('img').attr('data-src'),
 			link: $this.find('a').attr('href'),
 		};
-		
+
 		future.push(anime);
 	});
 

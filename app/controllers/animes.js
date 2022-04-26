@@ -1,7 +1,7 @@
 const animesRouter = require('express').Router();
 
-const { 
-	directory, 
+const {
+	directory,
 	updateDirectory,
 	futureAnime,
 	animeInfo,

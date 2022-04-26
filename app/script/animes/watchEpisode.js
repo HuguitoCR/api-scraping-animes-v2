@@ -15,10 +15,10 @@ const watchEpisode = async (id, res) => {
 				.replace('/stream/fl.php?v=https://', 'https://www.animefenix.com/redirect.php?player=22&code=');
 		});
 
-		if (element == 'M'){
+		if (element == 'M') {
 			element = 'Mega';
 		}
-		episodeURL.push({server: element, url: videoLink[0] });
+		episodeURL.push({ server: element, url: videoLink[0] });
 
 		if (episodeURL.length == servers.length) {
 			return res.json({ anime_id: animeId, episode_URL: episodeURL });

@@ -2,12 +2,11 @@ const Redis = require('ioredis');
 
 const client = new Redis(process.env.REDIS_URL, { lazyConnect: true });
 
-async function initClient(){
-	try{
+async function initClient() {
+	try {
 		await client.connect();
 		console.log(`Redis connection: ${client.status}`);
-	}
-	catch(ex){
+	} catch (ex) {
 		console.log(`Redis ${ex}`);
 		client.disconnect();
 	}
@@ -15,10 +14,10 @@ async function initClient(){
 
 /**
  * @description Get the value of a key
- * @param {Redis.KeyType} key 
- * @returns {Promise<string>} 
+ * @param {Redis.KeyType} key
+ * @returns {Promise<string>}
  */
-async function getKey(key){
+async function getKey(key) {
 	return client.get(key);
 }
 
@@ -26,7 +25,7 @@ async function getKey(key){
  * @description Set the string value of a key with expiration time
  * @param {Redis.KeyType} key
  * @param {Redis.ValueType} value
- * @param {Number} time in miliseconds 
+ * @param {Number} time in miliseconds
  * @returns {Promise<"OK">}
  */
 async function setKeyWithEx(key, value, time) {
@@ -35,8 +34,8 @@ async function setKeyWithEx(key, value, time) {
 
 /**
  * @description Set the string value of a key
- * @param {Redis.KeyType} key 
- * @param {Redis.ValueType} value 
+ * @param {Redis.KeyType} key
+ * @param {Redis.ValueType} value
  * @returns {Promise<"OK">}
  */
 async function setKey(key, value) {

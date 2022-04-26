@@ -7,7 +7,7 @@ const updateDirecotry = async (res) => {
 	const element = await getHtml('https://www.animefenix.com/animes?page=1');
 	const lastPage = element('li').last().prev().text();
 
-	for (let i = 1 ; i<= lastPage; i++){
+	for (let i = 1 ; i <= lastPage; i++) {
 		const $ = await getHtml(`https://www.animefenix.com/animes?page=${i}`);
 		$('.list-series .serie-card').each(function() {
 			const $this = $(this);
@@ -23,7 +23,7 @@ const updateDirecotry = async (res) => {
 			directory.push(anime);
 		});
 	}
-		
+
 	redisClient.setKey('directory', JSON.stringify(directory));
 	res.json({ status: 'ok' });
 };

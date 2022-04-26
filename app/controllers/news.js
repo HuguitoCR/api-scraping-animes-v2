@@ -5,7 +5,7 @@ newsRouter.get('/more', async (req, res, next) => {
 	await moreNews(res).catch(err => next(err));
 });
 
-newsRouter.get('/popular', async (req , res, next) => {
+newsRouter.get('/popular', async (req, res, next) => {
 	await popular(res).catch(err => next(err));
 });
 
