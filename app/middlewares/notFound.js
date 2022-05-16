@@ -1,4 +1,4 @@
-function notFound(req, res, next) {
+function notFound(req, res) {
 	res.status(404);
 	res.json({ Situation: 'Unable to find this route 📡.' });
 }
