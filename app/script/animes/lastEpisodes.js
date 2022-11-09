@@ -7,13 +7,13 @@ const lastEpisodes = async (res) => {
 	if (reply) {
 		res.json({ episodes: JSON.parse(reply), source: 'cache' });
 	} else {
-		const $ = await getHtml('https://www.animefenix.com/');
+		const $ = await getHtml('https://www.animefenix.tv/');
 		const episodes = [];
 
-		$('.capitulos-grid .item').each(function() {
+		$('.capitulos-grid .item').each(function () {
 			const $this = $(this);
 			const animeEpisode = {
-				id: $this.find('a').attr('href').split('https://www.animefenix.com/')[1].split('/')[1],
+				id: $this.find('a').attr('href').split('https://www.animefenix.tv/')[1].split('/')[1],
 				title: $this.find('div.overtitle').text().split('\n').join(''),
 				img: $this.find('img').attr('src'),
 				episode: $this.find('div.overepisode').text().split('\n').join(''),
